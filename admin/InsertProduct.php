@@ -1,7 +1,7 @@
 <?php
 require_once "dbconnect.php";
 
-if(isset($_POST[""]))
+if(!isset($_SESSION))
     {
         session_start();
     } 
@@ -32,10 +32,10 @@ if(isset($_POST[""]))
                 // productId  productName  category  price  description  qty  imgPath
                 $sql = 'insert into product values (?,?,?,?,?,?,?)';
                 $stmt = $conn->prepare($sql);
-                $flag = $stmt->execute([null,$name,$category,$price,$description,$qty,$filePath]);
+                $flag = $stmt->execute([null,$name,$category,$price,$qty,$description,$filePath]);
                 $id = $conn->lastInsertId();
                 if($flag){
-                    $message = "new product with id $id has been inserted successfully!";
+                    $message = "New product with id $id has been inserted successfully!";
                     $_SESSION['message'] = $message;
                     header("Location:viewProduct.php");
                 }
@@ -70,7 +70,7 @@ if(isset($_POST[""]))
             <div class="row mt-3">
                     <div class="col-md-12 mt-3">
                         
-                        <form action="insertProduct2.php" method="post" enctype="multipart/form-data">
+                        <form action="insertProduct.php" method="post" enctype="multipart/form-data">
                         <div class="row">
                         <div class="col-md-5 mx-3 px-5">
 
@@ -91,7 +91,7 @@ if(isset($_POST[""]))
                             {
                                 foreach($categories as $category)
                             {
-                                echo"<option value=$category[catID]> $category[catName] </option>";
+                                echo"<option value=$category[catId]> $category[catName] </option>";
                             }
                             }
                             ?>
