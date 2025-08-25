@@ -38,7 +38,7 @@ if (isset($_POST['login'])) {
     <div class="row"><?php include("navbarcopy.php"); ?></div>
 
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col-md-10">
             <div class="bg-white p-4 rounded shadow">
                 <h3 class="text-center mb-4">Admin Login</h3>
                 <form method="post" action="adminlogin.php">
